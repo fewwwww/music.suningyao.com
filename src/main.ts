@@ -1,12 +1,11 @@
 import * as THREE from 'three';
-import eat from './audio/eat.mp3'
-import zara from './audio/zara.mp3'
-import gonsa from './audio/gonsa.mp3'
-import right from './audio/right.mp3'
-import psycho from './audio/psycho.mp3'
-import tonight from './audio/tonight.mp3'
-import glowlikethat from './audio/glow-like-that.mp3'
-
+import eat from './audio/eat.mp3';
+import zara from './audio/zara.mp3';
+import gonsa from './audio/gonsa.mp3';
+import right from './audio/right.mp3';
+import psycho from './audio/psycho.mp3';
+import tonight from './audio/tonight.mp3';
+import glowlikethat from './audio/glow-like-that.mp3';
 
 // DOM
 const playDOM = document.getElementById('play');
@@ -14,10 +13,10 @@ const audioDOM = document.getElementsByTagName('audio')[0];
 
 // data model
 let model = {
-	activeView: 1,
-	pointerPosition: new THREE.Vector2(0, 0),
-	// all the audio music files
-	audioSrc: [eat, zara, gonsa, right, psycho, tonight, glowlikethat],
+  activeView: 1,
+  pointerPosition: new THREE.Vector2(0, 0),
+  // all the audio music files
+  audioSrc: [eat, zara, gonsa, right, psycho, tonight, glowlikethat],
 };
 
 let renderer: THREE.WebGLRenderer;
@@ -35,97 +34,101 @@ import { BaseView } from './view/BaseView';
 import { ViewTwo } from './view/ViewTwo';
 
 function main() {
-	initPlay();
-	initScene();
-	initListeners();
+  initPlay();
+  initScene();
+  initListeners();
 }
 
 // initiate player
 function initPlay() {
-	if (playDOM) {
-		// invert the color of the whole page
-		playDOM.onmouseover = function () {
-			const htmlDOM = document.getElementsByTagName('html')[0];
-			htmlDOM.style.filter = 'invert(1)';
-		};
-		// get back the color of the page
-		playDOM.onmouseleave = function () {
-			const htmlDOM = document.getElementsByTagName('html')[0];
-			htmlDOM.style.filter = '';
-		};
-		// initiate the audio on clicking, hide the play button, change active view
-		playDOM.onclick = function () {
-			audioDOM.src = model.audioSrc[Math.floor(Math.random() * model.audioSrc.length)];
-			audioDOM.load();
-			audioDOM.play();
-			audioDOM.style.display = 'none';
-			playDOM.style.display = 'none';
-			model.activeView = (model.activeView + 1) % views.length;
-		};
-	}
+  if (playDOM) {
+    // invert the color of the whole page
+    playDOM.onmouseover = function () {
+      const htmlDOM = document.getElementsByTagName('html')[0];
+      htmlDOM.style.filter = 'invert(1)';
+    };
+    // get back the color of the page
+    playDOM.onmouseleave = function () {
+      const htmlDOM = document.getElementsByTagName('html')[0];
+      htmlDOM.style.filter = '';
+    };
+    // initiate the audio on clicking, hide the play button, change active view
+    playDOM.onclick = function () {
+      audioDOM.src =
+        model.audioSrc[Math.floor(Math.random() * model.audioSrc.length)];
+      audioDOM.load();
+      audioDOM.play();
+      audioDOM.style.display = 'none';
+      playDOM.style.display = 'none';
+      model.activeView = (model.activeView + 1) % views.length;
+    };
+  }
 }
 
 // initiate the scene, assemble the views
 function initScene() {
-	renderer = new THREE.WebGLRenderer({ antialias: true });
-	renderer.setClearColor(0x000000);
-	renderer.shadowMap.enabled = true;
-	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setClearColor(0x000000);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-	document.body.appendChild(renderer.domElement);
+  document.body.appendChild(renderer.domElement);
 
-	// viewOne
-	viewOne = new ViewOne(model, renderer);
-	views.push(viewOne);
+  // viewOne
+  viewOne = new ViewOne(model, renderer);
+  views.push(viewOne);
 
-	// viewTwo
-	viewTwo = new ViewTwo(model, renderer);
-	views.push(viewTwo);
+  // viewTwo
+  viewTwo = new ViewTwo(model, renderer);
+  views.push(viewTwo);
 
-	animate();
+  animate();
 }
 
 function initListeners() {
-	window.addEventListener('resize', onWindowResize, false);
+  window.addEventListener('resize', onWindowResize, false);
 
-	window.addEventListener('pointermove', onPointerMove);
+  window.addEventListener('pointermove', onPointerMove);
 }
 
 function onWindowResize() {
-	viewOne.onWindowResize();
-	viewTwo.onWindowResize();
+  viewOne.onWindowResize();
+  viewTwo.onWindowResize();
 }
 
 function onPointerMove(event: any) {
-	// move camera along with the pointer position
-	model.pointerPosition.x = (event.clientX / window.innerWidth) * 2 - 1;
-	model.pointerPosition.y = -(event.clientY / window.innerHeight) * 2 + 1;
-	views[model.activeView].camera.position.x = model.pointerPosition.x / 2;
-	views[model.activeView].camera.position.y = model.pointerPosition.y / 2;
+  // move camera along with the pointer position
+  model.pointerPosition.x = (event.clientX / window.innerWidth) * 2 - 1;
+  model.pointerPosition.y = -(event.clientY / window.innerHeight) * 2 + 1;
+  views[model.activeView].camera.position.x = model.pointerPosition.x / 2;
+  views[model.activeView].camera.position.y = model.pointerPosition.y / 2;
 }
 
 function animate() {
-	requestAnimationFrame(() => {
-		animate();
-	});
+  requestAnimationFrame(() => {
+    animate();
+  });
 
-	// switch view when updating the model
-	switch (model.activeView) {
-		case 0:
-			viewOne.update();
-			break;
+  // switch view when updating the model
+  switch (model.activeView) {
+    case 0:
+      viewOne.update();
+      break;
 
-		case 1:
-			viewTwo.update();
-			break;
+    case 1:
+      viewTwo.update();
+      break;
 
-		default:
-			break;
-	}
+    default:
+      break;
+  }
 
-	renderer.render(views[model.activeView].scene, views[model.activeView].camera);
+  renderer.render(
+    views[model.activeView].scene,
+    views[model.activeView].camera,
+  );
 }
 
 main();
