@@ -65,6 +65,8 @@ function initPlay() {
       model.activeView = (model.activeView + 1) % views.length;
       // make camera not jumping
       onPointerMove(event)
+      // for mobile
+      htmlDOM.style.filter = '';
     };
   }
 }
