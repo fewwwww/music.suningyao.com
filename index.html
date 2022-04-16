@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gonsa</title>
+		<style>
+			@font-face {
+				font-family: Space Mono;
+				src: url('./SpaceMono.ttf');
+			}
+			body {
+				font-family: 'Space Mono', monospace, Avenir, Helvetica, Arial, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				text-align: center;
+				color: #2c3e50;
+
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				transition: all cubic-bezier(0.19, 1, 0.22, 1) 2s;
+			}
+			body {
+				box-sizing: border-box;
+			}
+			#play {
+				width: 30vh;
+				height: 10vh;
+				border: 1px solid black;
+				border-radius: 1px;
+				line-height: 10vh;
+				transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.7s;
+				position: fixed;
+				background-color: white;
+				opacity: 0.95;
+				margin: 30vh calc(50vw - 15vh);
+				margin-top: 30vh;
+			}
+			#play:hover {
+				cursor: pointer;
+				opacity: 1;
+				background-color: black;
+				color: white;
+			}
+			#play:active {
+				transform: scale(0.95);
+			}
+			audio {
+				display: none;
+			}
+		</style>
+	</head>
+	<body style="box-sizing: border-box">
+		<div id="play" style="text-align: center">Watch a song</div>
+		<audio controls autoplay style="display: none"></audio>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>
