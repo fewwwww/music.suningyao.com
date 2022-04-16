@@ -13,6 +13,7 @@ import tonight from './audio/tonight.mp3';
 // DOM
 const playDOM = document.getElementById('play');
 const audioDOM = document.getElementsByTagName('audio')[0];
+const htmlDOM = document.getElementsByTagName('html')[0];
 
 // data model
 let model = {
@@ -47,16 +48,14 @@ function initPlay() {
   if (playDOM) {
     // invert the color of the whole page
     playDOM.onmouseover = function () {
-      const htmlDOM = document.getElementsByTagName('html')[0];
       htmlDOM.style.filter = 'invert(1)';
     };
     // get back the color of the page
     playDOM.onmouseleave = function () {
-      const htmlDOM = document.getElementsByTagName('html')[0];
       htmlDOM.style.filter = '';
     };
     // initiate the audio on clicking, hide the play button, change active view
-    playDOM.onclick = function () {
+    playDOM.onclick = function (event: any) {
       audioDOM.src =
         model.audioSrc[Math.floor(Math.random() * model.audioSrc.length)];
       audioDOM.load();
@@ -64,6 +63,8 @@ function initPlay() {
       audioDOM.style.display = 'none';
       playDOM.style.display = 'none';
       model.activeView = (model.activeView + 1) % views.length;
+      // make camera not jumping
+      onPointerMove(event)
     };
   }
 }
@@ -105,8 +106,10 @@ function onPointerMove(event: any) {
   // move camera along with the pointer position
   model.pointerPosition.x = (event.clientX / window.innerWidth) * 2 - 1;
   model.pointerPosition.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  views[model.activeView].camera.position.x = model.pointerPosition.x / 2;
-  views[model.activeView].camera.position.y = model.pointerPosition.y / 2;
+  views[model.activeView].camera.position.x =
+    model.pointerPosition.x / 2;
+  views[model.activeView].camera.position.y =
+    model.pointerPosition.y / 2;
 }
 
 function animate() {
