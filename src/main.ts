@@ -50,6 +50,10 @@ function initPlay() {
     playDOM.onmouseover = function () {
       htmlDOM.style.filter = 'invert(1)';
     };
+    // invert the color of the whole page, for mobile...
+    playDOM.ontouchstart = function () {
+      htmlDOM.style.filter = 'invert(1)';
+    };
     // get back the color of the page
     playDOM.onmouseleave = function () {
       htmlDOM.style.filter = '';
