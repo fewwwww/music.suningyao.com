@@ -33,10 +33,9 @@
         border: 1px solid black;
         border-radius: 1px;
         line-height: 10vh;
-        transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
+        transition: transform cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
         position: fixed;
         background-color: white;
-        opacity: 0;
         margin: 30vh calc(50vw - 15vh);
         margin-top: 30vh;
       }
@@ -63,11 +62,6 @@
       console.info('made by Suning Yao');
       console.info('🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵🎵');
       console.info('learn more about me at suningyao.com');
-
-      // basically no transition when first load up the page.
-      setTimeout(() => {
-        document.getElementById('play').style.opacity = '0.95'
-      }, 500)
     </script>
   </body>
 </html>
