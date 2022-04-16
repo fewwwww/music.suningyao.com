@@ -1,11 +1,12 @@
 import * as THREE from 'three';
-import gonsa from './audio/gonsa.flac';
-import zara from './audio/zara.flac';
-import right from './audio/right.flac';
-import glowlikethat from './audio/glow-like-that.flac';
-import eat from './audio/eat.flac';
-import psycho from './audio/psycho.flac';
-import tonight from './audio/tonight.flac';
+import eat from './audio/eat.mp3'
+import zara from './audio/zara.mp3'
+import gonsa from './audio/gonsa.mp3'
+import right from './audio/right.mp3'
+import psycho from './audio/psycho.mp3'
+import tonight from './audio/tonight.mp3'
+import glowlikethat from './audio/glow-like-that.mp3'
+
 
 // DOM
 const playDOM = document.getElementById('play');
@@ -16,7 +17,7 @@ let model = {
 	activeView: 1,
 	pointerPosition: new THREE.Vector2(0, 0),
 	// all the audio music files
-	audioSrc: [gonsa, right, zara, glowlikethat, eat, psycho, tonight],
+	audioSrc: [eat, zara, gonsa, right, psycho, tonight, glowlikethat],
 };
 
 let renderer: THREE.WebGLRenderer;

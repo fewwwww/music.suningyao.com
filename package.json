@@ -5,8 +5,7 @@
 		"start": "vite",
 		"watch": "tsc --watch",
 		"build": "tsc && vite build --base=./",
-		"serve": "vite preview",
-		"pretty": "prettier --write 'src/**/*.{ts,html,scss}'"
+		"serve": "vite preview"
 	},
 	"devDependencies": {
 		"@types/three": "^0.134.0",
