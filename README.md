@@ -10,6 +10,8 @@ read project details in this blog post by [Suning Yao](https://suningyao.com/)
 
 ## make your own player
 
+[example](https://github.com/fewwwww/playlist)
+
 1. put audio file into `src/audio`
 
 2. import `src/audio/music.mp3` into `src/main.ts`
