@@ -10,11 +10,6 @@ import heart from './audio/heart.mp3';
 import psycho from './audio/psycho.mp3';
 import tonight from './audio/tonight.mp3';
 
-// DOM
-const playDOM = document.getElementById('play');
-const audioDOM = document.getElementsByTagName('audio')[0];
-const htmlDOM = document.getElementsByTagName('html')[0];
-
 // data model
 let model = {
   activeView: 1,
@@ -22,6 +17,11 @@ let model = {
   // all the audio music files
   audioSrc: [eat, you, zara, glow, moon, gonsa, right, heart, psycho, tonight],
 };
+
+// DOM
+const playDOM = document.getElementById('play');
+const audioDOM = document.getElementsByTagName('audio')[0];
+const htmlDOM = document.getElementsByTagName('html')[0];
 
 let renderer: THREE.WebGLRenderer;
 
