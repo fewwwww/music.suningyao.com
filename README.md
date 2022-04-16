@@ -15,7 +15,8 @@ read project details in this blog post by [Suning Yao](https://suningyao.com/)
 2. import `src/audio/music.mp3` into `src/main.ts`
 
 ```js
-import musicName from './audio/musicName.mp3';
+import musicA from './audio/musicA.mp3';
+import musicB from './audio/musicB.mp3';
 ```
 
 3. add the file at the end of `audioSrc` array in `model` of `main.ts`
@@ -24,7 +25,7 @@ import musicName from './audio/musicName.mp3';
 let model = {
   activeView: 1,
   pointerPosition: new THREE.Vector2(0, 0),
-  audioSrc: [a, b, c, musicName],
+  audioSrc: [musicA, musicB],
 };
 ```
 
