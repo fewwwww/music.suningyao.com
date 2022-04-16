@@ -18,7 +18,7 @@ read project details in this blog post by [Suning Yao](https://suningyao.com/)
 import musicName from './audio/musicName.mp3';
 ```
 
-3. add the file at the end of `audioSrc` array in `model` of `main.ts`.
+3. add the file at the end of `audioSrc` array in `model` of `main.ts`
 
 ```js
 let model = {
